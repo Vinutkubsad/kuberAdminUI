@@ -56,6 +56,11 @@ export class DataService {
     return this.http.post(url, data);
   }
 
+  desableCharity(data) {
+    let url = AppSettings.BASE_URL + AppSettings.DISABLE_CHARITY;
+    return this.http.post(url, data);
+  }
+
   CharityLogin(data) {
     let url = AppSettings.BASE_URL + AppSettings.CHARITY_LOGIN;
     return this.http.post(url, data);

@@ -25,8 +25,36 @@ export class AdminDasComponent implements OnInit {
     })
   }
 
-  logout(){
-    localStorage.clear();
-    this.router.navigate(['/home']);
+  DisableCharity(_id) {
+    console.log(_id);
+    var data = {"approved" : false, "id":_id};
+    this.service.desableCharity(data).subscribe((res) => {
+      console.log(res);
+      if(res) {
+        alert('do you want to disable the charity');
+        this.refresh();
+      } else {
+        alert('cannot be disabled')
+      }
+    })
+  }
+
+  ApproveCharity(_id){
+    console.log(_id);
+    var data={"approved": true,"id":_id};
+    this.service.approveCharity(data).subscribe((res)=>{
+      console.log(res);
+      if(res){
+        alert("Charity Approved")
+        this.refresh();
+      }
+      else{
+        alert("Could not approve")
+      }
+    })
+  }
+
+  refresh(){
+    window.location.reload();
   }
 }
