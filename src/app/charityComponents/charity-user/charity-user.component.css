@@ -1,0 +1,20 @@
+.wrap-btn {
+  display: flex;
+  border: none;
+  justify-content: center;
+  margin: 35px;
+ 
+}
+
+.wrap-btn button {
+  font-family: 'Lora', serif;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  background: #ffff;
+  font-weight: 300;
+}
+.wrap-btn button:hover {
+  background-color: rgb(8, 231, 220);
+  box-shadow: 0 5px 10px rgba(0,0,0,.3);
+  transform: translateY(-3px);
+}   
