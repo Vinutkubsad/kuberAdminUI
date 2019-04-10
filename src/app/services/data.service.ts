@@ -1,85 +1,98 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/map';
 
 import { AppSettings } from '../app.settings';
-import { Charity } from '../models/charity.model';
 import { AdminLogin } from '../models/adminlogin.model';
-import { charityLogin } from '../models/charitylogin.model';
-import { Contact } from '../models/contactme.model';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
 
-  selectedCharity: Charity;
-  charities: Charity[];
   adminLogin: AdminLogin;
-  charityLogin: charityLogin;
-  contact: Contact;
-  contacts: Contact[];
 
-  constructor(private http: HttpClient) { }
 
-  public getReport(page, amount, date, status) {
-    const httpOption = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
-    }
-    let url = AppSettings.BASE_URL + AppSettings.PAYMENT_REPORT;
-    if (amount !== undefined && date === undefined && status === undefined)
-      return this.http.get(url + "?page=" + page + "&amount=" + amount, httpOption);
-    else if (amount === undefined && date !== undefined && status === undefined) {
-      return this.http.get(url + "?page=" + page + "&date=" + date, httpOption);
-    } else if (amount === undefined && date === undefined && status !== undefined) {
-      return this.http.get(url + "?page=" + page + "&status=" + status, httpOption);
-    } else return this.http.get(url + "?page=" + page, httpOption);
-  }
+  constructor(  private http: HttpClient) { }
 
-  postCharty(data: Charity) {
-    let url = AppSettings.BASE_URL + AppSettings.CHARITY_URL;
-    return this.http.post(url, data)
-  }
-
-  AdminLogin(data: AdminLogin) {
+  AdminLogin(data: any) {
     let url = AppSettings.BASE_URL + AppSettings.ADMIN_LOGIN;
     return this.http.post(url, data);
   }
 
-  getCharitydetails() {
-    let url = AppSettings.BASE_URL + AppSettings.CHARITY_ALL;
-    return this.http.get(url).map((data) => { return data })
-  }
-
-  approveCharity(data) {
-    let url = AppSettings.BASE_URL + AppSettings.APPROVE_CHARITY;
-    return this.http.post(url, data);
-  }
-
-  desableCharity(data) {
-    let url = AppSettings.BASE_URL + AppSettings.DISABLE_CHARITY;
-    return this.http.post(url, data);
-  }
-
-  CharityLogin(data) {
-    let url = AppSettings.BASE_URL + AppSettings.CHARITY_LOGIN;
-    return this.http.post(url, data);
-  }
-
-  //Search 
-  public searchReport(data, page) {
+  getAdminProfile() {
     const httpOption = {
       headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
     }
-    let url = AppSettings.BASE_URL + AppSettings.SEARCH_REPORT;
-    return this.http.post(url + "?page=" + page, data, httpOption);
+   let url = AppSettings.BASE_URL + AppSettings.ADMIN_PROFILE;
+   return this.http.get(url,httpOption); 
   }
 
-  sendMessage(data: Contact) {
-    let url = AppSettings.BASE_URL + AppSettings.SEND_MESSAGE;
-    return this.http.post(url, data);
+  public getCharitydetails(page) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.CHARITY_ALL;
+    return this.http.get(url + '?page=' + page, httpOption);
   }
 
-  
+  // get charity by ID
+  getCharityByID(id){
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.CHARITY_BY_ID + id;
+    return this.http.get(url, httpOption);
+  }
+
+  approveCharity(data) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.APPROVE_CHARITY;
+    return this.http.post(url, data, httpOption);
+  }
+
+  editCharity(data, id){
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.EDIT_CHARITY_DETAILS + id;
+    return this.http.post(url, data, httpOption);
+  }
+
+  suggestCharity(data){
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.SUGGEST_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
+
+  desableCharity(data: any) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.DISABLE_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
+
+  rejectCharity(data: any) {
+    debugger;
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.REJECT_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
+
+  searcharity(data, page) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.SEARCH_CHARIY;
+    return this.http.post(url + '?page=' + page, data,httpOption);
+  }
 }
+
 

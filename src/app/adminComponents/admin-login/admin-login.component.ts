@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
- 
+
 
 @Component({
   selector: 'app-admin-login',
@@ -11,6 +10,7 @@ import swal from 'sweetalert';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
+
   loginForm: FormGroup;
   constructor(private fb: FormBuilder, public adminservices: DataService, private router: Router) { }
 
@@ -33,17 +33,16 @@ export class AdminLoginComponent implements OnInit {
     }
   }
   submitForm(){
-    console.log(this.loginForm.value,"validity",this.loginForm.valid);
-    this.adminservices.AdminLogin(this.loginForm.value).subscribe((res)=>{
+    var data = { "email": this.adminservices.adminLogin.email, "password": this.adminservices.adminLogin.password }
+    this.adminservices.AdminLogin(data).subscribe((res:any)=>{
+      console.log(res, 'res');
       if(res){
-        localStorage.setItem('AdminLogin', 'true');
+        localStorage.setItem('jwt', 'true');
+        console.log(res);
         this.resetForm();
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['dashboard/approve-charity'])
       } 
-      else{
-        swal("Error!", "You clicked the button!", "warnning");
-
-      }
+      localStorage.setItem('jwt',res.result.jwt);
     })
 }
 

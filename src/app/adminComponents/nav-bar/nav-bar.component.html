@@ -1,20 +1,66 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand"> 
-      <img src="../../../assets/Images/kuber-HD.jpg" alt="">
-      <p>Kuber</p>
-    </a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarText">
-  <ul class="navbar-nav mr-auto">
-    <!-- <li class="nav-item active">
-      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-    </li> -->
-  </ul>
-  <span class="navbar-text">
-      <button type="button" class="btn btn-outline-danger" (click)="logout()" >Log Out</button>
-  </span>
+<nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand">
+         <img src="../../../assets/Images/kuber-HD.jpg" alt="">
+         <p>Quber </p>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+         aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+         <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item active">
+         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+       </li> -->
+         </ul>
+         <span class="navbar-text">
+            <button type="button" class="btn btn-outline-danger" (click)="logout()">Log Out</button>
+         </span>
+      </div>
+   </nav>
+   
+
+<!-- sidebar -->
+<div class="s-layout">
+   <!-- Sidebar -->
+   <div class="s-layout__sidebar">
+      <a class="s-sidebar__trigger" href="#0">
+         <i class="fa fa-bars"></i>
+      </a>
+
+      <nav class="s-sidebar__nav">
+         <ul>
+            <li>
+               <a class="s-sidebar__nav-link" [routerLink]="['/dashboard/approve-charity']">
+                  <i class="fa fa-igloo"> </i>
+                  <em>Approve Charity</em>
+               </a>
+            </li>
+            <li>
+               <a class="s-sidebar__nav-link" [routerLink]="[ '/dashboard/desable-charity']">
+                  <i class="fa fa-home"></i>
+                   <em>All Charities</em>
+               </a>
+            </li>
+            <li>
+               <a class="s-sidebar__nav-link" [routerLink]="[ '/dashboard/reject-charity']">
+                  <i class="fas fa-bell-slash"></i>
+                   <em>Rejected Charity</em>
+               </a>
+            </li>
+            <!-- <li>
+               <a class="s-sidebar__nav-link">
+                  <i class="fa fa-camera"></i><em>All charities</em>
+               </a>
+            </li> -->
+         </ul>
+      </nav>
+   </div>
+
+   <!-- Content -->
+   <main class="s-layout__content">
+      <router-outlet></router-outlet>
+   </main>
 </div>
-</nav>
+
