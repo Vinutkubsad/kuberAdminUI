@@ -21,6 +21,7 @@ export class DesableCharityComponent implements OnInit {
   public flag: any = false;
   public charityName;
   public charityResult1;
+  spinner: boolean;
 
   public pagination = {
     currentPage: 1,
@@ -41,8 +42,9 @@ export class DesableCharityComponent implements OnInit {
   }
 
   getCharitydetails() {
+    this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response:any) => {
-      console.log(Response);
+      this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
       console.log(this.charityResult1,'id');

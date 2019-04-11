@@ -1,5 +1,6 @@
 import { Component, OnInit, Optional} from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 
 
@@ -14,6 +15,9 @@ export class ApproveCharityComponent implements OnInit {
   public page;
   public approved: any=[];
   public data: any=[];
+  spinner: boolean;
+
+  dataSource = new MatTableDataSource
 
   constructor(  public service: DataService ) { }
 
@@ -21,8 +25,12 @@ export class ApproveCharityComponent implements OnInit {
     this.getCharitydetails();
   }
 
+  
+
   getCharitydetails() {
+    this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((res:any) => {
+      this.spinner = false;
        this.charityResult = res.result.paginatedItems;
     })
   }

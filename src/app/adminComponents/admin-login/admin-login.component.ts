@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 
 
 @Component({
@@ -17,12 +18,11 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
     this.loginForm = this.fb.group({
-      email: new FormControl(null, [Validators.required, Validators.pattern(/^[a-z0-9_.]+$/i)]),
-      password: new FormControl(null, Validators.required)
+      email: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
+      password: new FormControl(null, [Validators.required])
     });
     let tocken = localStorage.getItem('isLogin');
-    if (tocken) {
-          }
+    if (tocken) {}
   }
 
   resetForm(form?: NgForm) {
@@ -34,15 +34,16 @@ export class AdminLoginComponent implements OnInit {
   }
   submitForm(){
     var data = { "email": this.adminservices.adminLogin.email, "password": this.adminservices.adminLogin.password }
-    this.adminservices.AdminLogin(data).subscribe((res:any)=>{
+    this.adminservices.AdminLogin(data).subscribe((res:any)=>{ 
       console.log(res, 'res');
       if(res){
         localStorage.setItem('jwt', 'true');
-        console.log(res);
         this.resetForm();
         this.router.navigate(['dashboard/approve-charity'])
-      } 
+      }
       localStorage.setItem('jwt',res.result.jwt);
+    }, (errr) =>{
+      swal("Sorry","Enter valid email or password","error");
     })
 }
 

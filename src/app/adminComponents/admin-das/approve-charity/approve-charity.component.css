@@ -1,0 +1,19 @@
+.title {
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  margin: 20px;
+  color:  rgb(15, 228, 217);
+}
+
+.thead {
+  /* color: rgb(15, 228, 217); */
+  font-size: 16px;
+  padding: 25px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
