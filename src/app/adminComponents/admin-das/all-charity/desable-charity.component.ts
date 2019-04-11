@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/services/data.service";
 import { Router } from "@angular/router";
+import swal from 'sweetalert';
 
 
 @Component({
@@ -47,9 +48,9 @@ export class DesableCharityComponent implements OnInit {
 
   getCharitydetails() {
     this.spinner = true;
-    this.service.getCharitydetails(this.page).subscribe((Response:any) => {
+    this.service.getCharitydetails(this.page).subscribe((Response: any) => {
       console.log(Response);
-      
+
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
@@ -105,17 +106,18 @@ export class DesableCharityComponent implements OnInit {
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
-      this.approve = "enable"
-    }else if (this.flag === true){
-      this.approve = "disable"
+      this.approve = "enable";
+    } else if (this.flag === true) {
+      this.approve = "disable";
     }
-    var data = { approved:  this.approve , id: this.charityId };
-    this.service.disable_enable(data).subscribe((Response: any) => {
-      // console.log(this.permission);
-      console.log('disable');
-      
-      console.log(Response);
-
+    var data = { approved: this.approve, id: this.charityId };
+    this.service.disable_enable(data).subscribe((Res:any) => {
+      if(this.approve = "disable"){
+        swal("successfully disable ","good","succes")
+        window.location.reload();
+        }else
+        swal("successfully enabled ","good","succes");
+        window.location.reload();
     });
   }
 
@@ -124,47 +126,52 @@ export class DesableCharityComponent implements OnInit {
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === true) {
-      this.approve = "enable"
-    }else if (this.flag === false){
-      this.approve = "disable"
+      this.approve = "enable";
+    } else if (this.flag === false) {
+      this.approve = "disable";
     }
     var data = { approved: this.approve, id: this.charityId };
-    this.service.disable_enable(data).subscribe((Response: any) => {
-      console.log('enable');
-      
-      console.log(Response);
+    this.service.disable_enable(data).subscribe((Res:any) => {
+      if(Res.succes){
+      if(this.approve = "enable"){
+      swal("successfully enabled ","good","succes");
+      window.location.reload();
+      }else
+      swal("successfully disabled ","good","succes");
+      window.location.reload();
+    }
+    },(err)=>{
+      swal("Error","something went wrong", "error");
     });
   }
-  suggestCharityTrue(id){
+
+  suggestCharityTrue(id) {
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === true) {
-      this.suggest = true
-    }else if (this.flag === false){
-      this.suggest = false
+      this.suggest = true;
+    } else if (this.flag === false) {
+      this.suggest = false;
     }
-    var data = { "charityId": this.charityId, "suggested":true }
-    this.service.suggestCharity(data).subscribe((Response:any) => {
-    console.log(Response);
-    console.log(true);
-
-
-    })
+    var data = { charityId: this.charityId, suggested: this.suggest };
+    this.service.suggestCharity(data).subscribe((Response: any) => {
+      console.log(Response);
+      console.log(true);
+    });
   }
-  suggestCharityFalse(id){
+  suggestCharityFalse(id) {
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === true) {
-      this.suggest = true
-    }else if (this.flag === false){
-      this.suggest = false
+      this.suggest = false;
+    } else if (this.flag === false) {
+      this.suggest = true;
     }
-    var data = { "charityId": this.charityId, "suggested":false }
-    this.service.suggestCharity(data).subscribe((Response:any) => {
+    var data = { charityId: this.charityId, suggested: this.suggest };
+    this.service.suggestCharity(data).subscribe((Response: any) => {
       console.log(false);
-      
-    console.log(Response);
-      
-    })
+
+      console.log(Response);
+    });
   }
 }
