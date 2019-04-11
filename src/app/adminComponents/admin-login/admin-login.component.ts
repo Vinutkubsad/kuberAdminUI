@@ -43,6 +43,8 @@ export class AdminLoginComponent implements OnInit {
         this.router.navigate(['dashboard/approve-charity'])
       } 
       localStorage.setItem('jwt',res.result.jwt);
+      // console.log(jwt);
+      
     })
 }
 

@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid padding" #conatent>
     <div class="container">
         <div class="row welcome ">
@@ -10,7 +8,7 @@
                 <div class="col">
                     <div class="form-group form-inline">
                       <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search by charity name"
-                        [(ngModel)]="charityName" (input)="search()" />
+                        [(ngModel)]="charityName" (input)="search()"/>
                       <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
                     </div>
                 <div class="col">
@@ -24,7 +22,8 @@
                                             <th>Email</th>
                                             <th>Contact</th>
                                             <th>Address</th>
-                                            <th>Action</th>
+                                            <th>Edit / Disable</th>
+                                            
                                           </tr>
                                     </thead>
                                     <tbody>
@@ -33,17 +32,24 @@
                                             <td *ngIf="data.approved">{{ data.email }}</td>
                                             <td *ngIf="data.approved">{{ data.phoneNumber}}</td>
                                             <td *ngIf="data.approved">{{ data.state }},{{data.city}},{{data.zipcode}}</td>
-                                            <td *ngIf="data.approved">
-                                              <!-- <a [routerLink]="[ '/dashboard/edit-charity']"><i class="fas fa-edit"></i> Edit Details </a> -->
+                                            <td *ngIf="data.approved || data.disable">
                                               <button class="btn" (click)="editProfile(i)"><i class="fas fa-edit"></i> Edit Details</button>
+                                            
+                                                <label class="switch">
+                                                <input type="checkbox" (input)="disable(data._id)">
+                                                <span class="slider round" ></span>
+                                              </label>
+                                            </td>
+                                            <td *ngIf="data.approved">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" class="form-check-input" (input)="selectCharity(data._id)"  >
+                                                    
+                                                </label>
                                             </td>
                                           </tr>
                                     </tbody>
                                 </table>
                                 <hr>
-                                <!-- <div *ngIf="pledgeReport?.length === 0" class="text-center">
-                                    <h5>No data</h5>
-                                </div> -->
                             </div>
                         </div>
                         <div class="paginate">

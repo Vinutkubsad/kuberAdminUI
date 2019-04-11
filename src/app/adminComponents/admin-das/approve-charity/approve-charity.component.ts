@@ -23,6 +23,8 @@ export class ApproveCharityComponent implements OnInit {
 
   getCharitydetails() {
     this.service.getCharitydetails(this.page).subscribe((res:any) => {
+      console.log(res);
+      
        this.charityResult = res.result.paginatedItems;
     })
   }

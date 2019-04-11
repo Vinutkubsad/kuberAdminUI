@@ -69,11 +69,19 @@ export class DataService {
     return this.http.post(url,data,httpOption);
   }
 
-  desableCharity(data: any) {
+  disableCharity(data) {
     const httpOption = {
       headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
     }
     let url = AppSettings.BASE_URL + AppSettings.DISABLE_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
+  
+  enableCharity(data) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.ENABLE_CHARITY;
     return this.http.post(url,data,httpOption);
   }
 
