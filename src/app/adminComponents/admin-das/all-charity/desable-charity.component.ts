@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/services/data.service";
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: "app-desable-charity",
   templateUrl: "./desable-charity.component.html",
@@ -22,8 +23,9 @@ export class DesableCharityComponent implements OnInit {
   public checked;
   public check;
   public charityId;
-  public permission;
+  public approve;
   public suggest;
+  spinner: boolean;
 
   public pagination = {
     currentPage: 1,
@@ -44,8 +46,11 @@ export class DesableCharityComponent implements OnInit {
   }
 
   getCharitydetails() {
-    this.service.getCharitydetails(this.page).subscribe((Response: any) => {
+    this.spinner = true;
+    this.service.getCharitydetails(this.page).subscribe((Response:any) => {
       console.log(Response);
+      
+      this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
       // console.log(this.charityResult1,'id');
@@ -70,20 +75,6 @@ export class DesableCharityComponent implements OnInit {
     console.log("onPageChange", e);
     this.setPage(e);
   }
-
-  // DisableCharity(_id) {
-  //   // console.log(_id);
-  //   var data = {"approved" : "disable", "id":_id};
-  //   this.service.desableCharity(data).subscribe((res) => {
-  //     console.log(res);
-  //     if(res) {
-  //       alert('do you want to disable the charity');
-  //       this.refresh();
-  //     } else {
-  //       alert('cannot be disabled');
-  //     }
-  //   })
-  // }
 
   search() {
     var data = { name: this.charityName };
@@ -112,23 +103,68 @@ export class DesableCharityComponent implements OnInit {
   disable(id) {
     console.log(id);
     this.charityId = id;
-    if ((this.checked = true)) {
-      this.permission = "enable";
-    } else {
-      this.permission = "disable";
+    this.flag = !this.flag;
+    if (this.flag === false) {
+      this.approve = "enable"
+    }else if (this.flag === true){
+      this.approve = "disable"
     }
-    var data = { approved: this.permission, id: this.charityId };
-    this.service.disableCharity(data).subscribe((Response: any) => {
-      console.log(this.permission);
+    var data = { approved:  this.approve , id: this.charityId };
+    this.service.disable_enable(data).subscribe((Response: any) => {
+      // console.log(this.permission);
+      console.log('disable');
+      
+      console.log(Response);
+
+    });
+  }
+
+  enable(id) {
+    console.log(id);
+    this.charityId = id;
+    this.flag = !this.flag;
+    if (this.flag === true) {
+      this.approve = "enable"
+    }else if (this.flag === false){
+      this.approve = "disable"
+    }
+    var data = { approved: this.approve, id: this.charityId };
+    this.service.disable_enable(data).subscribe((Response: any) => {
+      console.log('enable');
+      
       console.log(Response);
     });
   }
-  selectCharity(id){
+  suggestCharityTrue(id){
     this.charityId = id;
-    var data = { "charityId": this.charityId, "suggested":this.suggest }
+    this.flag = !this.flag;
+    if (this.flag === true) {
+      this.suggest = true
+    }else if (this.flag === false){
+      this.suggest = false
+    }
+    var data = { "charityId": this.charityId, "suggested":true }
     this.service.suggestCharity(data).subscribe((Response:any) => {
     console.log(Response);
+    console.log(true);
 
+
+    })
+  }
+  suggestCharityFalse(id){
+    this.charityId = id;
+    this.flag = !this.flag;
+    if (this.flag === true) {
+      this.suggest = true
+    }else if (this.flag === false){
+      this.suggest = false
+    }
+    var data = { "charityId": this.charityId, "suggested":false }
+    this.service.suggestCharity(data).subscribe((Response:any) => {
+      console.log(false);
+      
+    console.log(Response);
+      
     })
   }
 }

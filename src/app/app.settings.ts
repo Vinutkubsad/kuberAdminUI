@@ -10,7 +10,7 @@ export class AppSettings{
     public static CHARITY_LOGIN     = '/v1/charities/login';
     public static SEARCH_REPORT     = '/v1/charityAdmin/searchReports';
     public static SEND_MESSAGE      = '/v1/userDetails/adminhelp';
-    public static DISABLE_CHARITY   = '/v1/admin/disableCharity';
+    public static DISABLE_ENABLE   = '/v1/admin/disableEnable';
     public static ENABLE_CHARITY    = '/v1/admin/approveCharity';
     public static REJECT_CHARITY    = '/v1/admin/rejectCharity';
     public static SEARCH_CHARIY     = '/v1/admin/search';

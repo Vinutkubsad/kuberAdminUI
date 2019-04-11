@@ -6,8 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DataService } from './services/data.service';
-import {NgbModule,NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModule,NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +48,7 @@ import { ProfileComponent } from './adminComponents/admin-das/profile/profile.co
     BrowserModule,
     NgbModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {useHash:true}),
     HttpClientModule,
@@ -54,8 +57,9 @@ import { ProfileComponent } from './adminComponents/admin-das/profile/profile.co
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
     NgbModule,
-    NgbPaginationModule
-    
+    MatProgressSpinnerModule,
+    NgbPaginationModule,
+    MatFormFieldModule
   ],
   providers: [DataService,AuthGaurd,AuthGaurd1],
   bootstrap: [AppComponent]

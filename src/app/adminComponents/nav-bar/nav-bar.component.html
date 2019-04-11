@@ -1,66 +1,48 @@
-
-<nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand">
-         <img src="../../../assets/Images/kuber-HD.jpg" alt="">
-         <p>Quber </p>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-         aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-         <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+<nav class="navbar navbar-expand-md navbar-light static-top">
+   <a class="navbar-brand" href=""><img src="./assets/Images/logo.png" width="60" height="60"></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+ 
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item" [routerLink]="['/dashboard/approve-charity']" routerLinkActive="active">
+         <a class="nav-link" role="button" outlet="outlet">Approve Charities</a>
+       </li>
+       <li class="nav-item" [routerLink]="[ '/dashboard/desable-charity']" routerLinkActive="active">
+         <a class="nav-link" role="button" outlet="outlet">All Charities</a>
+       </li>
+     </ul>
+     <ul class="navbar-nav ml-auto">
+       <!-- <li class="nav-item">
+         <div>
+           <button class="btn btn-default btn-lg" data-toggle="collapse" href="#collapseExample" role="button"
+             aria-expanded="false" aria-controls="collapseExample" style="font-size:26px; color: rgb(23, 179, 206)">
+             <i class="fa fa-bell" aria-hidden="true"></i><span class="badge badge-notify" style="color:red">6</span>
+           </button>
+         </div>
        </li> -->
-         </ul>
-         <span class="navbar-text">
-            <button type="button" class="btn btn-outline-danger" (click)="logout()">Log Out</button>
-         </span>
-      </div>
-   </nav>
-   
-
-<!-- sidebar -->
-<div class="s-layout">
-   <!-- Sidebar -->
-   <div class="s-layout__sidebar">
-      <a class="s-sidebar__trigger" href="#0">
-         <i class="fa fa-bars"></i>
-      </a>
-
-      <nav class="s-sidebar__nav">
-         <ul>
-            <li>
-               <a class="s-sidebar__nav-link" [routerLink]="['/dashboard/approve-charity']">
-                  <i class="fa fa-igloo"> </i>
-                  <em>Approve Charity</em>
-               </a>
-            </li>
-            <li>
-               <a class="s-sidebar__nav-link" [routerLink]="[ '/dashboard/desable-charity']">
-                  <i class="fa fa-home"></i>
-                   <em>All Charities</em>
-               </a>
-            </li>
-            <li>
-               <a class="s-sidebar__nav-link" [routerLink]="[ '/dashboard/reject-charity']">
-                  <i class="fas fa-bell-slash"></i>
-                   <em>Rejected Charity</em>
-               </a>
-            </li>
-            <!-- <li>
-               <a class="s-sidebar__nav-link">
-                  <i class="fa fa-camera"></i><em>All charities</em>
-               </a>
-            </li> -->
-         </ul>
-      </nav>
+       <li class="nav-item">
+         <div ngbDropdown placement="bottom-right" class="d-inline-block">
+           <button class="btn btn-outline" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-cog"
+               aria-hidden="true"></i></button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+             <button ngbDropdownItem><i class="fa fa-user" aria-hidden="true"></i>
+               Profile</button>
+             <button ngbDropdownItem (click)="logout()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+               Logout</button>
+           </div>
+         </div>
+       </li>
+     </ul>
    </div>
-
-   <!-- Content -->
-   <main class="s-layout__content">
-      <router-outlet></router-outlet>
-   </main>
-</div>
-
+ </nav>
+ 
+ <div class="wrap-container-fluid">
+   <router-outlet></router-outlet>
+ </div>
+ <div class="footer">
+    <app-footer></app-footer>
+ </div>
+ 
