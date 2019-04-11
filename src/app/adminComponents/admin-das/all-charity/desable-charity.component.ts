@@ -47,7 +47,6 @@ export class DesableCharityComponent implements OnInit {
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
-      console.log(this.charityResult1,'id');
       this.doPagination(Response.result.itemsPerPage, Response.result.total_pages, Response.result.totalCount, Response.result.pageNo, Response.result.per_page)
     })
   }
@@ -65,19 +64,19 @@ export class DesableCharityComponent implements OnInit {
     this.setPage(e);
   }
 
-  DisableCharity(_id) {
-    // console.log(_id);
-    var data = {"approved" : "disable", "id":_id};
-    this.service.desableCharity(data).subscribe((res) => {
-      console.log(res);
-      if(res) {
-        alert('do you want to disable the charity');
-        this.refresh();
-      } else { 
-        alert('cannot be disabled');
-      }
-    })
-  }
+  // DisableCharity(_id) {
+  //   // console.log(_id);
+  //   var data = {"approved" : "disable", "id":_id};
+  //   this.service.desableCharity(data).subscribe((res) => {
+  //     console.log(res);
+  //     if(res) {
+  //       alert('do you want to disable the charity');
+  //       this.refresh();
+  //     } else { 
+  //       alert('cannot be disabled');
+  //     }
+  //   })
+  // }
 
   search() {
     var data = { "name": this.charityName }
