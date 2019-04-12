@@ -39,7 +39,7 @@ export class AdminLoginComponent implements OnInit {
       if(res){
         localStorage.setItem('jwt', 'true');
         this.resetForm();
-        this.router.navigate(['dashboard/approve-charity'])
+        this.router.navigate(['dashboard/pending-charities'])
       }
       localStorage.setItem('jwt',res.result.jwt);
     }, (errr) =>{

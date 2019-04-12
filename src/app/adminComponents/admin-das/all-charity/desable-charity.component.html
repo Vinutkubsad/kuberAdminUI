@@ -86,7 +86,7 @@
                         <td *ngIf="data.approved === 'approved'">
                           <label class="switch">
                             <input
-                              type="checkbox"
+                              type="checkbox"  checked
                               (input)="disable(data._id)"
                             />
                             <span class="slider round"></span>
@@ -96,7 +96,7 @@
                           <label class="switch">
                             <input
                               type="checkbox"
-                              checked
+                             
                               (input)="enable(data._id)"
                             />
                             <span class="slider round"></span>
