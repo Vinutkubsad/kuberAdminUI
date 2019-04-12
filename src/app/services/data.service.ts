@@ -76,6 +76,30 @@ export class DataService {
   //   let url = AppSettings.BASE_URL + AppSettings.DISABLE_CHARITY;
   //   return this.http.post(url,data,httpOption);
   // }
+  
+  suggestCharity(data){
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.SUGGEST_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
+
+  disable_enable(data) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.DISABLE_ENABLE;
+    return this.http.post(url,data,httpOption);
+  }
+  
+  enableCharity(data) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.ENABLE_CHARITY;
+    return this.http.post(url,data,httpOption);
+  }
 
   rejectCharity(data: any) {
     debugger;
