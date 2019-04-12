@@ -4,68 +4,66 @@
             <div class="col-12" style="color:rgb(106, 208, 226);">
                 <h4 class="title">All Charities</h4>
             </div>
-            <div class="container padding">
-                <div class="col">
-                    <div class="form-group form-inline">
-                        <div class="col-6">
-                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-                            <div class="input-group mb-2 mr-sm-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fas fa-search"></i></div>
-                                </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                                    placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none">
+            <div class="col">
+                <div class="form-group form-inline">
+                    <div class="col-4">
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-search"></i></div>
                             </div>
+                            <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                                placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()"
+                                style="outline:none">
                         </div>
-                        <div class="col">
-                            <button class="refresh"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                        <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
                     </div>
                     <div class="col">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead">
-                                            <tr>
-                                                <th>Charity Name</th>
-                                                <th>Email</th>
-                                                <th>Contact</th>
-                                                <th>Address</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let data of charityResult; let i=index;">
-                                                <td *ngIf="data.approved">{{ data.charityName }}</td>
-                                                <td *ngIf="data.approved">{{ data.email }}</td>
-                                                <td *ngIf="data.approved">{{ data.phoneNumber}}</td>
-                                                <td *ngIf="data.approved">
-                                                    {{ data.state }},{{data.city}},{{data.zipcode}}</td>
-                                                <td *ngIf="data.approved">
-                                                    <!-- <a [routerLink]="[ '/dashboard/edit-charity']"><i class="fas fa-edit"></i> Edit Details </a> -->
-                                                    <button class="btn" (click)="editProfile(i)"><i
-                                                            class="fas fa-edit"></i> Edit Details</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="spinner">
-                                        <mat-spinner *ngIf="spinner"></mat-spinner>
-                                    </div>
-                                    <hr>
-                                    <!-- <div *ngIf="pledgeReport?.length === 0" class="text-center">
+                        <button class="refresh" (click)="refresh()"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                    <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead">
+                                        <tr>
+                                            <th>Charity Name</th>
+                                            <th>Email</th>
+                                            <th>Contact</th>
+                                            <th>Address</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of charityResult; let i=index;">
+                                            <td *ngIf="data.approved">{{ data.charityName }}</td>
+                                            <td *ngIf="data.approved">{{ data.email }}</td>
+                                            <td *ngIf="data.approved">{{ data.phoneNumber}}</td>
+                                            <td *ngIf="data.approved">
+                                                {{ data.state }},{{data.city}},{{data.zipcode}}</td>
+                                            <td *ngIf="data.approved">
+                                                <button class="btn" (click)="editProfile(i)"><i class="fas fa-edit"></i>
+                                                    Edit Details</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="spinner">
+                                    <mat-spinner *ngIf="spinner"></mat-spinner>
+                                </div>
+                                <hr>
+                                <!-- <div *ngIf="pledgeReport?.length === 0" class="text-center">
                                     <h5>No data</h5>
                                 </div> -->
-                                </div>
                             </div>
-                            <div class="paginate">
-                                <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
-                                    [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
-                                    aria-label="Default pagination" (pageChange)="onPageChange($event)">
-                                </ngb-pagination>
-                            </div>
+                        </div>
+                        <div class="paginate">
+                            <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
+                                [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
+                                aria-label="Default pagination" (pageChange)="onPageChange($event)">
+                            </ngb-pagination>
                         </div>
                     </div>
                 </div>

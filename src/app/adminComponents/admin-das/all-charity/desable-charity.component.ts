@@ -95,4 +95,5 @@ export class DesableCharityComponent implements OnInit {
     let id = this.charityResult[i]._id;
     this.router.navigate(['dashboard/edit-charity', id]);
   }
+
 }
