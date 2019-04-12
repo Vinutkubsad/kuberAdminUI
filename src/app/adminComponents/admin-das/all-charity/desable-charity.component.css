@@ -1,3 +1,10 @@
+.container-fluid  {
+  width:80%;
+}
+.container {
+  display: contents;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

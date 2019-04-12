@@ -102,20 +102,21 @@ export class DesableCharityComponent implements OnInit {
   }
 
   disable(id) {
-    // console.log(id);
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
       this.approve = "enable";
-      swal("successfully disabled ","","success")
+      alert("Are you sure");
+      // swal("successfully enabled ","","success")
     } else if (this.flag === true) {
       this.approve = "disable";
-      swal("successfully enabled ","","success");
+      swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-        window.location.reload();
+        // window.location.reload();
+        console.log(Res);
       }
     },(err)=>{
       swal("Error","something went wrong", "error");
@@ -123,20 +124,21 @@ export class DesableCharityComponent implements OnInit {
   }
 
   enable(id) {
-    // console.log(id);
     this.charityId = id;
     this.flag = !this.flag;
-    if (this.flag === true) {
+    if (this.flag === false) {
+      this.approve = "disable";
+      swal("successfully enabled ","","success");
+    } else if (this.flag === true) {
       this.approve = "enable";
       swal("successfully enabled ","","success");
-    } else if (this.flag === false) {
-      this.approve = "disable";
-      swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-          window.location.reload();
+          // window.location.reload();
+          console.log(Res);
+          
     }
     },(err)=>{
       swal("Error","something went wrong", "error");
@@ -181,4 +183,5 @@ export class DesableCharityComponent implements OnInit {
       swal("Error","something went wrong", "error");
     });
   }
+
 }
