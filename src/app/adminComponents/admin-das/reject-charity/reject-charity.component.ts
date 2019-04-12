@@ -40,7 +40,7 @@ export class RejectCharityComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getCharitydetails();
+    this.getCharitydetails();
   }
   getCharitydetails() {
     this.spinner = true;

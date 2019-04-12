@@ -113,7 +113,7 @@ export class DesableCharityComponent implements OnInit {
       swal("successfully enabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
-    this.service.disable_enable(data).subscribe((Res:any) => {
+    this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
         window.location.reload();
       }
@@ -134,7 +134,7 @@ export class DesableCharityComponent implements OnInit {
       swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
-    this.service.disable_enable(data).subscribe((Res:any) => {
+    this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
           window.location.reload();
     }

@@ -48,10 +48,10 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of charityResult;">
-                        <td *ngIf="data.approved">{{ data.charityName }}</td>
-                        <td *ngIf="data.approved">{{ data.email }}</td>
-                        <td *ngIf="data.approved">{{ data.phoneNumber }}</td>
-                        <td *ngIf="data.approved">
+                        <td *ngIf="data.reject">{{ data.charityName }}</td>
+                        <td *ngIf="data.reject">{{ data.email }}</td>
+                        <td *ngIf="data.reject">{{ data.phoneNumber }}</td>
+                        <td *ngIf="data.reject">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
                        

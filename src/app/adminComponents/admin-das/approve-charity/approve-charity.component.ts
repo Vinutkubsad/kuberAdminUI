@@ -51,7 +51,7 @@ export class ApproveCharityComponent implements OnInit {
 
   rejectCharity(_id){
     var data={"approved": "reject","id":_id};
-    this.service.rejectCharity(data).subscribe((res)=>{
+    this.service.disable_enable_reject(data).subscribe((res)=>{
       if(res){
         alert('Are you sure!')
         this.refresh();
