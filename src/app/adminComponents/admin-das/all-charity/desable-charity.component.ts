@@ -102,7 +102,7 @@ export class DesableCharityComponent implements OnInit {
   }
 
   disable(id) {
-    console.log(id);
+    // console.log(id);
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
@@ -117,11 +117,13 @@ export class DesableCharityComponent implements OnInit {
       if(Res.success){
         window.location.reload();
       }
+    },(err)=>{
+      swal("Error","something went wrong", "error");
     });
   }
 
   enable(id) {
-    console.log(id);
+    // console.log(id);
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === true) {
@@ -146,13 +148,18 @@ export class DesableCharityComponent implements OnInit {
     this.flag = !this.flag;
     if (this.flag === true) {
       this.suggest = true;
+      swal("Suggestion added ","","success");
     } else if (this.flag === false) {
       this.suggest = false;
+      swal("Suggestion removed ","","success");
     }
     var data = { charityId: this.charityId, suggested: this.suggest };
     this.service.suggestCharity(data).subscribe((Response: any) => {
-      console.log(Response);
-      console.log(true);
+      if(Response.success){
+          window.location.reload();
+    }
+    },(err)=>{
+      swal("Error","something went wrong", "error");
     });
   }
   suggestCharityFalse(id) {
@@ -160,14 +167,18 @@ export class DesableCharityComponent implements OnInit {
     this.flag = !this.flag;
     if (this.flag === true) {
       this.suggest = false;
+      swal("Suggestion removed ","","success");
     } else if (this.flag === false) {
       this.suggest = true;
+      swal("Suggestion added ","","success");
     }
     var data = { charityId: this.charityId, suggested: this.suggest };
     this.service.suggestCharity(data).subscribe((Response: any) => {
-      console.log(false);
-
-      console.log(Response);
+     if(Response.success){
+          window.location.reload();
+    }
+    },(err)=>{
+      swal("Error","something went wrong", "error");
     });
   }
 }

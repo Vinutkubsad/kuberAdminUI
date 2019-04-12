@@ -11,7 +11,7 @@
               <label class="sr-only" for="inlineFormInputGroupUsername2"
                 >Username</label
               >
-              <div class="input-group mb-2 mr-sm-2">
+              <div class="input-group mb-2 mr-sm-2" style="width:30%;">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
                     <i class="fas fa-search"></i>
@@ -24,7 +24,7 @@
                   placeholder="Search Charity name"
                   [(ngModel)]="charityName"
                   (input)="search()"
-                  style="outline:none"
+                  style="outline:none;"
                 />
               </div>
             </div>
@@ -107,23 +107,25 @@
                       </tr>
                     </tbody>
                   </table>
+                  <hr />
+                  <div class="paginate">
+                      <ngb-pagination
+                        class="d-flex justify-content-end"
+                        [(page)]="pagination.currentPage"
+                        [pageSize]="pagination.noOfItemsPerPage"
+                        [collectionSize]="pagination.totalCount"
+                        aria-label="Default pagination"
+                        (pageChange)="onPageChange($event)"
+                      >
+                      </ngb-pagination>
+                    </div>
                   <div class="spinner">
                     <mat-spinner *ngIf="spinner"></mat-spinner>
                   </div>
-                  <hr />
+                 
                 </div>
               </div>
-              <div class="paginate">
-                <ngb-pagination
-                  class="d-flex justify-content-end"
-                  [(page)]="pagination.currentPage"
-                  [pageSize]="pagination.noOfItemsPerPage"
-                  [collectionSize]="pagination.totalCount"
-                  aria-label="Default pagination"
-                  (pageChange)="onPageChange($event)"
-                >
-                </ngb-pagination>
-              </div>
+              
             </div>
           </div>
         </div>
