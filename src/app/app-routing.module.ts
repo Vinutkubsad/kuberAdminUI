@@ -15,10 +15,10 @@ export const routes: Routes = [
   {
     path: 'dashboard', component: AdminDasComponent,
     children: [
-    { path: 'approve-charity', component: ApproveCharityComponent },
-    { path: 'desable-charity', component: DesableCharityComponent },
+    { path: 'pending-charities', component: ApproveCharityComponent },
+    { path: 'approved-charities', component: DesableCharityComponent },
     { path: 'edit-charity/:id', component: EditCharityComponent },
-    { path: 'reject-charity', component: RejectCharityComponent },
+    { path: 'rejected-charities', component: RejectCharityComponent },
     { path: 'profile', component: ProfileComponent }
   ]
   },
