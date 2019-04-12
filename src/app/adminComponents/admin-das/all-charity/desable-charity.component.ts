@@ -107,19 +107,16 @@ export class DesableCharityComponent implements OnInit {
     this.flag = !this.flag;
     if (this.flag === false) {
       this.approve = "enable";
-      swal("successfully disable ","good","succes")
+      swal("successfully disabled ","","success")
     } else if (this.flag === true) {
       this.approve = "disable";
-      swal("successfully enabled ","good","succes");
+      swal("successfully enabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable(data).subscribe((Res:any) => {
-      // if(this.approve = "disable"){
-        // swal("successfully disable ","good","succes")
+      if(Res.success){
         window.location.reload();
-        // }else
-        // swal("successfully enabled ","good","succes");
-        // window.location.reload();
+      }
     });
   }
 
@@ -129,22 +126,15 @@ export class DesableCharityComponent implements OnInit {
     this.flag = !this.flag;
     if (this.flag === true) {
       this.approve = "enable";
-      swal("successfully enabled ","good","succes");
+      swal("successfully enabled ","","success");
     } else if (this.flag === false) {
       this.approve = "disable";
-      swal("successfully disabled ","good","succes");
+      swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable(data).subscribe((Res:any) => {
-      if(Res.succes){
-        // console.log(Res);
-        
-    //   if(this.approve = "enable"){
-    //   swal("successfully enabled ","good","succes");
-    //   window.location.reload();
-    //   }else
-    //   swal("successfully disabled ","good","succes");
-    //   window.location.reload();
+      if(Res.success){
+          window.location.reload();
     }
     },(err)=>{
       swal("Error","something went wrong", "error");
