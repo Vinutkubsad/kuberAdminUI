@@ -23,6 +23,7 @@ export class RejectCharityComponent implements OnInit {
   public charityId;
   public approve;
   public suggest;
+  mes;
   spinner: boolean;
 
   public pagination = {
@@ -46,8 +47,9 @@ export class RejectCharityComponent implements OnInit {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
       console.log(Response);
-
-      this.spinner = false;
+     
+      if(Response.success){
+      // this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
       // console.log(this.charityResult1,'id');
@@ -58,6 +60,7 @@ export class RejectCharityComponent implements OnInit {
         Response.result.pageNo,
         Response.result.per_page
       );
+      }
     });
   }
 

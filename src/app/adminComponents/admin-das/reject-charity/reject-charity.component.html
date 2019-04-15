@@ -58,23 +58,24 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="spinner">
-                    <mat-spinner *ngIf="spinner"></mat-spinner>
-                  </div>
+                  <!-- <div *ngIf="spinner" class="spinner">
+                    <mat-spinner ></mat-spinner>
+                  </div> -->
                   <hr />
+                  <div class="paginate">
+                      <ngb-pagination
+                        class="d-flex justify-content-end"
+                        [(page)]="pagination.currentPage"
+                        [pageSize]="pagination.noOfItemsPerPage"
+                        [collectionSize]="pagination.totalCount"
+                        aria-label="Default pagination"
+                        (pageChange)="onPageChange($event)"
+                      >
+                      </ngb-pagination>
+                    </div>
                 </div>
               </div>
-              <div class="paginate">
-                <ngb-pagination
-                  class="d-flex justify-content-end"
-                  [(page)]="pagination.currentPage"
-                  [pageSize]="pagination.noOfItemsPerPage"
-                  [collectionSize]="pagination.totalCount"
-                  aria-label="Default pagination"
-                  (pageChange)="onPageChange($event)"
-                >
-                </ngb-pagination>
-              </div>
+              
             </div>
           </div>
         </div>

@@ -106,16 +106,16 @@ export class DesableCharityComponent implements OnInit {
     this.flag = !this.flag;
     if (this.flag === false) {
       this.approve = "enable";
-      alert("Are you sure");
-      // swal("successfully enabled ","","success")
+      swal("successfully enabled ","","success")
     } else if (this.flag === true) {
       this.approve = "disable";
       swal("successfully disabled ","","success");
     }
+   
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-        // window.location.reload();
+        this.getCharitydetails();
         console.log(Res);
       }
     },(err)=>{
@@ -136,7 +136,7 @@ export class DesableCharityComponent implements OnInit {
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-          // window.location.reload();
+        this.getCharitydetails();
           console.log(Res);
           
     }
