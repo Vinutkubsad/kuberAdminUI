@@ -48,33 +48,34 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of charityResult;">
-                        <td *ngIf="data.approved">{{ data.charityName }}</td>
-                        <td *ngIf="data.approved">{{ data.email }}</td>
-                        <td *ngIf="data.approved">{{ data.phoneNumber }}</td>
-                        <td *ngIf="data.approved">
+                        <td *ngIf="data.approved==='reject'">{{ data.charityName }}</td>
+                        <td *ngIf="data.approved==='reject'">{{ data.email }}</td>
+                        <td *ngIf="data.approved==='reject'">{{ data.phoneNumber }}</td>
+                        <td *ngIf="data.approved==='reject'">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
                        
                       </tr>
                     </tbody>
                   </table>
-                  <div class="spinner">
-                    <mat-spinner *ngIf="spinner"></mat-spinner>
-                  </div>
+                  <!-- <div *ngIf="spinner" class="spinner">
+                    <mat-spinner ></mat-spinner>
+                  </div> -->
                   <hr />
+                  <div class="paginate">
+                      <ngb-pagination
+                        class="d-flex justify-content-end"
+                        [(page)]="pagination.currentPage"
+                        [pageSize]="pagination.noOfItemsPerPage"
+                        [collectionSize]="pagination.totalCount"
+                        aria-label="Default pagination"
+                        (pageChange)="onPageChange($event)"
+                      >
+                      </ngb-pagination>
+                    </div>
                 </div>
               </div>
-              <div class="paginate">
-                <ngb-pagination
-                  class="d-flex justify-content-end"
-                  [(page)]="pagination.currentPage"
-                  [pageSize]="pagination.noOfItemsPerPage"
-                  [collectionSize]="pagination.totalCount"
-                  aria-label="Default pagination"
-                  (pageChange)="onPageChange($event)"
-                >
-                </ngb-pagination>
-              </div>
+              
             </div>
           </div>
         </div>

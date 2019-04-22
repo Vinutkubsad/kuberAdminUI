@@ -7,7 +7,7 @@
       <div class="container padding">
         <div class="col">
           <div class="form-group form-inline">
-            <div class="col-3">
+            <div class="col-4">
               <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
               <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
@@ -42,13 +42,13 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of charityResult; let i = index">
-                        <td *ngIf="data.approved">{{ data.charityName }}</td>
-                        <td *ngIf="data.approved">{{ data.email }}</td>
-                        <td *ngIf="data.approved">{{ data.phoneNumber }}</td>
-                        <td *ngIf="data.approved">
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
-                        <td *ngIf="data.approved && data.suggested === false">
+                        <td *ngIf="data.approved === 'approved' && data.suggested === false">
                             <label class="container check" class="checkbox">
                               <input
                                 type="checkbox"
@@ -67,7 +67,7 @@
                               />
                             </label>
                           </td>
-                          <td *ngIf="data.approved">
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
                             <button class="btn" (click)="editProfile(i)">
                               <i class="fas fa-edit"></i> Edit Details
                             </button>
@@ -86,7 +86,6 @@
                           <label class="switch">
                             <input
                               type="checkbox"
-                             
                               (input)="enable(data._id)"
                             />
                             <span class="slider round"></span>

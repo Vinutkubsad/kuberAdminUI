@@ -101,20 +101,25 @@ export class DesableCharityComponent implements OnInit {
   }
 
   disable(id) {
+<<<<<<< HEAD
     // console.log(id);
+=======
+>>>>>>> 98e819331992f7a6ebe4ebc2aed0afbb3061d8ae
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
       this.approve = "enable";
-      swal("successfully disabled ","","success")
+      swal("successfully enabled ","","success")
     } else if (this.flag === true) {
       this.approve = "disable";
-      swal("successfully enabled ","","success");
+      swal("successfully disabled ","","success");
     }
+   
     var data = { approved: this.approve, id: this.charityId };
-    this.service.disable_enable(data).subscribe((Res:any) => {
+    this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-        window.location.reload();
+        this.getCharitydetails();
+        console.log(Res);
       }
     },(err)=>{
       swal("Error","something went wrong", "error");
@@ -122,20 +127,25 @@ export class DesableCharityComponent implements OnInit {
   }
 
   enable(id) {
+<<<<<<< HEAD
     // console.log(id);
+=======
+>>>>>>> 98e819331992f7a6ebe4ebc2aed0afbb3061d8ae
     this.charityId = id;
     this.flag = !this.flag;
-    if (this.flag === true) {
+    if (this.flag === false) {
+      this.approve = "disable";
+      swal("successfully enabled ","","success");
+    } else if (this.flag === true) {
       this.approve = "enable";
       swal("successfully enabled ","","success");
-    } else if (this.flag === false) {
-      this.approve = "disable";
-      swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
-    this.service.disable_enable(data).subscribe((Res:any) => {
+    this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-          window.location.reload();
+        this.getCharitydetails();
+          console.log(Res);
+          
     }
     },(err)=>{
       swal("Error","something went wrong", "error");
