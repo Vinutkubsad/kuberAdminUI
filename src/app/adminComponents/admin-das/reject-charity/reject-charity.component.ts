@@ -39,13 +39,14 @@ export class RejectCharityComponent implements OnInit {
     this.getCharitydetails();
   }
 
+
   ngOnInit() {
-    // this.getCharitydetails();
+    this.getCharitydetails();
   }
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-      console.log(Response);
+      // console.log(Response);
 
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
@@ -60,6 +61,7 @@ export class RejectCharityComponent implements OnInit {
       );
     });
   }
+
 
   doPagination(itemsPerPage, total_pages, totalCount, pageNo, per_page) {
     // console.log(this.pages, itemsPerPage, total_pages, totalCount, per_page);

@@ -8,14 +8,14 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
      <ul class="navbar-nav mr-auto">
        <li class="nav-item" [routerLink]="['/dashboard/pending-charities']" routerLinkActive="active">
-         <a class="nav-link" role="button" outlet="outlet"><i class='fas fas fa-handshake'></i>Pending Charities</a>
+         <a class="nav-link" role="button" outlet="outlet"><i class='fas fas fa-handshake'></i> Pending Charities</a>
        </li>
        <li class="nav-item" [routerLink]="[ '/dashboard/approved-charities']" routerLinkActive="active">
-         <a class="nav-link" role="button" outlet="outlet"><i class='fas fas fa-seedling'></i>All Charities</a>
+         <a class="nav-link" role="button" outlet="outlet"><i class='fas fas fa-seedling'></i> All Charities</a>
        </li>
-       <!-- <li class="nav-item" [routerLink]="[ '/dashboard/rejected-charities']" routerLinkActive="active">
-        <a class="nav-link" role="button" outlet="outlet">Rejected Charities</a>
-      </li> -->
+       <li class="nav-item" [routerLink]="[ '/dashboard/rejected-charities']" routerLinkActive="active">
+        <a class="nav-link" role="button" outlet="outlet"><i class="fas fa-user-slash"></i> Rejected Charities</a>
+      </li>
      </ul>
      <ul class="navbar-nav ml-auto">
        <!-- <li class="nav-item">

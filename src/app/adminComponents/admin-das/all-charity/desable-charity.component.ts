@@ -49,7 +49,6 @@ export class DesableCharityComponent implements OnInit {
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-      console.log(Response);
 
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
