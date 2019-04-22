@@ -42,13 +42,13 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of charityResult; let i = index">
-                        <td *ngIf="data.approved">{{ data.charityName }}</td>
-                        <td *ngIf="data.approved">{{ data.email }}</td>
-                        <td *ngIf="data.approved">{{ data.phoneNumber }}</td>
-                        <td *ngIf="data.approved">
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
-                        <td *ngIf="data.approved && data.suggested === false">
+                        <td *ngIf="data.approved === 'approved' && data.suggested === false">
                             <label class="container check" class="checkbox">
                               <input
                                 type="checkbox"
@@ -67,7 +67,7 @@
                               />
                             </label>
                           </td>
-                          <td *ngIf="data.approved">
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
                             <button class="btn" (click)="editProfile(i)">
                               <i class="fas fa-edit"></i> Edit Details
                             </button>
