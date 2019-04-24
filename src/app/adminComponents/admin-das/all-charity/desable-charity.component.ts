@@ -137,7 +137,7 @@ export class DesableCharityComponent implements OnInit {
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
         this.getCharitydetails();
-          console.log(Res);
+          // console.log(Res);
           
     }
     },(err)=>{
