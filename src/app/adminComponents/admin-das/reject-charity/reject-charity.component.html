@@ -62,16 +62,13 @@
                     <mat-spinner ></mat-spinner>
                   </div> -->
                   <hr />
+                  <div *ngFor="let data of charityResult;">
                   <div class="paginate">
-                      <ngb-pagination
-                        class="d-flex justify-content-end"
-                        [(page)]="pagination.currentPage"
-                        [pageSize]="pagination.noOfItemsPerPage"
-                        [collectionSize]="pagination.totalCount"
-                        aria-label="Default pagination"
-                        (pageChange)="onPageChange($event)"
-                      >
-                      </ngb-pagination>
+                    <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
+                    [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
+                    aria-label="Default pagination" (pageChange)="onPageChange($event)" *ngIf="charityResult.length> 0 && data.approved==='reject'">
+                  </ngb-pagination>
+                    </div>
                     </div>
                 </div>
               </div>

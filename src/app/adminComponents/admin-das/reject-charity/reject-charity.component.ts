@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
@@ -40,7 +41,6 @@ export class RejectCharityComponent implements OnInit {
     this.getCharitydetails();
   }
 
-
   ngOnInit() {
     this.getCharitydetails();
   }
@@ -64,7 +64,6 @@ export class RejectCharityComponent implements OnInit {
       }
     });
   }
-
 
   doPagination(itemsPerPage, total_pages, totalCount, pageNo, per_page) {
     // console.log(this.pages, itemsPerPage, total_pages, totalCount, per_page);

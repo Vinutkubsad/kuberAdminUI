@@ -101,10 +101,6 @@ export class DesableCharityComponent implements OnInit {
   }
 
   disable(id) {
-<<<<<<< HEAD
-    // console.log(id);
-=======
->>>>>>> 98e819331992f7a6ebe4ebc2aed0afbb3061d8ae
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
@@ -127,10 +123,6 @@ export class DesableCharityComponent implements OnInit {
   }
 
   enable(id) {
-<<<<<<< HEAD
-    // console.log(id);
-=======
->>>>>>> 98e819331992f7a6ebe4ebc2aed0afbb3061d8ae
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
