@@ -17,4 +17,6 @@ export class AppSettings{
     public static CHARITY_BY_ID     = '/v1/admin/getCharityById/';
     public static EDIT_CHARITY_DETAILS = '/v1/admin/editCharity/';
     public static SUGGEST_CHARITY   = '/v1/admin/suggestCharity';
+    public static BALANCE_STRIPE = '/v1/admin/balance';
+    public static TRANSFER_FUNDS = '/v1/admin/transfers';
 }

@@ -101,6 +101,21 @@ export class DataService {
     let url = AppSettings.BASE_URL + AppSettings.SEARCH_CHARIY;
     return this.http.post(url + '?page=' + page, data,httpOption);
   }
+
+  StripeBalance(){
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.BALANCE_STRIPE;
+    return this.http.get(url, httpOption);
+  }
+  transfer(data ) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.TRANSFER_FUNDS;
+    return this.http.post(url , data,httpOption);
+  }
 }
 
 
