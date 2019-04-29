@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   adminProfile(){
     this.service.getAdminProfile().subscribe((res)=>{
-      console.log(res, 'profile');
+      // console.log(res, 'profile');
     })
   }
 

@@ -16,11 +16,13 @@ import swal from 'sweetalert';
 })
 export class DesableCharityComponent implements OnInit {
 
+  closeResult: string;
   faRedo = faRedo;
   faSearch = faSearch;
   faCommentDollar = faCommentDollar;
 
-  
+  public bank :any;
+  public card:any;
   public charityResult: any[];
   private page: number = 1;
   public searchResults: any[];
@@ -37,6 +39,13 @@ export class DesableCharityComponent implements OnInit {
   public approve;
   public suggest;
   spinner: boolean;
+  public id : any;
+  public amount: any;
+  public BankPayment: any;
+  public cardPayment: any;
+  public payment: any;
+  public name: any;
+ 
   
 
   public pagination = {
@@ -47,23 +56,29 @@ export class DesableCharityComponent implements OnInit {
     totalCount: 0
   };
 
-  constructor(public service: DataService, public router: Router,config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(public service: DataService, public router: Router, private modalService: NgbModal,config: NgbModalConfig,) {
     config.backdrop = 'static';
     config.keyboard = false;
+  
   }
   setPage(i) {
     this.page = i;
     this.getCharitydetails();
   }
 
+  open(content) {
+    this.modalService.open(content);
+  }
+
   ngOnInit() {
     this.getCharitydetails();
+    this.StripeBalance();
   }
 
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-      console.log(Response);
+      // console.log(Response);
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
@@ -86,7 +101,7 @@ export class DesableCharityComponent implements OnInit {
   }
 
   onPageChange(e) {
-    console.log("onPageChange", e);
+    // console.log("onPageChange", e);
     this.setPage(e);
   }
 
@@ -129,7 +144,7 @@ export class DesableCharityComponent implements OnInit {
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
         this.getCharitydetails();
-        console.log(Res);
+        // console.log(Res);
       }
     },(err)=>{
       swal("Error","something went wrong", "error");
@@ -197,8 +212,30 @@ export class DesableCharityComponent implements OnInit {
     });
   }
 
-  open(content) {
-    console.log('id',this.charityId);
-    this.modalService.open(content);
+  StripeBalance(){
+    this.service.StripeBalance().subscribe((Response:any)=>{
+      console.log(Response);
+      this.bank = Response.result.available[0].source_types.bank_account/100;
+      this.card = Response.result.available[0].source_types.card/100;
+    })
+  }
+
+  Transfer(accountId,charityName){
+  this.id =  accountId;
+  this.name = charityName
+  // console.log(this.id,this.name);
+  
+  }
+
+  Submit(){
+    var data = { "account_id" : this.id , "amount":this.amount, "source_type" :this.payment }
+    // console.log(data);
+    this.service.transfer(data).subscribe((Response: any)=>{
+      // console.log(Response);
+      if(Response){
+
+        swal("",`Successfully transferred ${Response.result.amount/100} USD to ${name} `,"success");
+      } 
+    })
   }
 }

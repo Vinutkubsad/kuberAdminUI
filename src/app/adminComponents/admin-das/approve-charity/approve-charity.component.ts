@@ -36,7 +36,7 @@ export class ApproveCharityComponent implements OnInit {
   }
 
   ApproveCharity(_id){
-    console.log(_id);
+    // console.log(_id);
     var data={"approved": 'approved',"id":_id};
     this.service.approveCharity(data).subscribe((res)=>{
       if(res){

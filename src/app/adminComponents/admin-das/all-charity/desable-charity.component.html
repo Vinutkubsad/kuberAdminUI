@@ -1,151 +1,149 @@
 <div class="container-fluid padding" #conatent>
-    <div class="container">
-      <div class="row welcome ">
-        <div class="col-12">
-          <h4 class="title">Approve Charity</h4>
-        </div>
-        <div class="container padding">
-          <div class="col">
-            <div class="form-group form-inline">
-              <div class="col-4">
-                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-                <div class="input-group mb-2 mr-sm-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <fa-icon [icon]="faSearch"></fa-icon>
-                    </div>
+  <div class="container">
+    <div class="row welcome ">
+      <div class="col-12">
+        <h4 class="title">Approve Charity</h4>
+      </div>
+      <div class="container padding">
+        <div class="col">
+          <div class="form-group form-inline">
+            <div class="col-4">
+              <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faSearch"></fa-icon>
                   </div>
-                  <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                    placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none" />
                 </div>
-              </div>
-              <div class="col">
-                <button type="button" class="refresh" (click)="refresh()"><fa-icon [icon]="faRedo"></fa-icon></button>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                  placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none" />
               </div>
             </div>
             <div class="col">
-              <div class="row">
-                <div class="col-12">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class="thead">
-                        <tr>
-                          <th>Charity Name</th>
-                          <th>Email</th>
-                          <th>Contact</th>
-                          <th>Address</th>
-                          <th>Suggest</th>
-                          <th>Edit</th>
-                          <th>Disable/Enable</th>
-                          <th>Transfer Funds</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let data of charityResult; let i = index">
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}</td>
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}</td>
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
-                            {{ data.state }},{{ data.city }},{{ data.zipcode }}
-                          </td>
-                          <td *ngIf="data.approved === 'approved' && data.suggested === false">
-                              <label class="container check" class="checkbox">
-                                <input
-                                  type="checkbox"
-                                  class="regular-checkbox"
-                                  (input)="suggestCharityTrue(data._id)"
-                                /><span class="checkmark"></span>
-                              </label>
-                            </td>
-                            <td *ngIf="data.approved && data.suggested === true">
-                              <label class="checkbox">
-                                <input
-                                  type="checkbox"
-                                  checked
-                                  class="regular-checkbox"
-                                  (input)="suggestCharityFalse(data._id)"
-                                />
-                              </label>
-                            </td>
-                            <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
-                              <button class="btn" (click)="editProfile(i)">
-                                <i class="fas fa-edit"></i> Edit Details
-                              </button>
-                            </td>
-                         
-                          <td *ngIf="data.approved === 'approved'">
-                            <label class="switch">
-                              <input
-                                type="checkbox"  checked
-                                (input)="disable(data._id)"
-                              />
-                              <span class="slider round"></span>
-                            </label>
-                          </td>
-                          <td *ngIf="data.approved === 'disable'">
-                            <label class="switch">
-                              <input
-                                type="checkbox"
-                                (input)="enable(data._id)"
-                              />
-                              <span class="slider round"></span>
-                            </label>
-                          </td>
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
-                            <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Transfer amount</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <hr />
-                    <div class="paginate">
-                        <ngb-pagination
-                          class="d-flex justify-content-end"
-                          [(page)]="pagination.currentPage"
-                          [pageSize]="pagination.noOfItemsPerPage"
-                          [collectionSize]="pagination.totalCount"
-                          aria-label="Default pagination"
-                          (pageChange)="onPageChange($event)"
-                        >
-                        </ngb-pagination>
-                      </div>
-                    <div class="spinner">
-                      <mat-spinner *ngIf="spinner"></mat-spinner>
-                    </div>
-                   
-                  </div>
-                </div>
-                
-              </div>
+              <button type="button" class="refresh" (click)="refresh()">
+                <fa-icon [icon]="faRedo"></fa-icon>
+              </button>
             </div>
           </div>
+          <div class="col">
+            <div class="row">
+              <div class="col-12">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead">
+                      <tr>
+                        <th>Charity Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Suggest</th>
+                        <th>Edit</th>
+                        <th>Disable/Enable</th>
+                        <th>Transfer Funds</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of charityResult; let i = index">
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}
+                        </td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}
+                        </td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
+                          {{ data.state }},{{ data.city }},{{ data.zipcode }}
+                        </td>
+                        <td *ngIf="data.approved === 'approved' && data.suggested === false">
+                          <label class="container check" class="checkbox">
+                            <input type="checkbox" class="regular-checkbox"
+                              (input)="suggestCharityTrue(data._id)" /><span class="checkmark"></span>
+                          </label>
+                        </td>
+                        <td *ngIf="data.approved && data.suggested === true">
+                          <label class="checkbox">
+                            <input type="checkbox" checked class="regular-checkbox"
+                              (input)="suggestCharityFalse(data._id)" />
+                          </label>
+                        </td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
+                          <button class="btn" (click)="editProfile(i)">
+                            <i class="fas fa-edit"></i> Edit Details
+                          </button>
+                        </td>
+
+                        <td *ngIf="data.approved === 'approved'">
+                          <label class="switch">
+                            <input type="checkbox" checked (input)="disable(data._id)" />
+                            <span class="slider round"></span>
+                          </label>
+                        </td>
+                        <td *ngIf="data.approved === 'disable'">
+                          <label class="switch">
+                            <input type="checkbox" (input)="enable(data._id)" />
+                            <span class="slider round"></span>
+                          </label>
+                        </td>
+                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
+                          <button class="btn btn-lg btn-outline-primary" (click)="open(content  )"
+                            (click)="Transfer(data.accountId,data.charityName)">Transfer</button>
+
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                  <hr />
+                  <div class="paginate">
+                    <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
+                      [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
+                      aria-label="Default pagination" (pageChange)="onPageChange($event)">
+                    </ngb-pagination>
+                  </div>
+                  <div class="spinner">
+                    <mat-spinner *ngIf="spinner"></mat-spinner>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-  
+</div>
+
+
+
+<div>
   <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Transfer Funds</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
       <form>
         <div class="col">
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">Toatl Amount</label>
-                <div class="col-sm-5">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="100000">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputPassword" class="col-sm-4 col-form-label">Bank Type</label>
-                <div class="col-sm-4">
-                    <input type="radio" name="bank" value="male"> Bank
-                    <input type="radio" name="card" value="female"> Card
-                </div>
-              </div>
+          <label>Available Balances</label>
+          <br>
+          <input type="radio" name="payment" value="bank_account" [(ngModel)]="payment"><label for="">Bank</label> : {{bank}} USD from bank transfer
+          <br>
+          <input type="radio" name="payment" value="card" [(ngModel)]="payment"><label for="">Card</label> : {{card}} USD from card payments
         </div>
-        </form>
+        <div class="col">
+          <label for="">Amount to payout</label><br>
+          <input type="number" name="amount" placeholder="amount" [(ngModel)]="amount">
+
+        </div>
+      </form>
+    </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="c('cancel click')">Cancel</button>
-      <button type="button" ngbAutofocus class="btn btn-success"
-      (click)="tranfer()">Submit</button>
+      <button type="button" class="btn btn-outline-success" (click)="Submit()">Submit</button>
     </div>
   </ng-template>
+</div>

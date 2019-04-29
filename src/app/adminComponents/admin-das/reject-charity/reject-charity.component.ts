@@ -52,7 +52,7 @@ export class RejectCharityComponent implements OnInit {
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-      console.log(Response);
+      // console.log(Response);
      
       if(Response.success){
       // this.spinner = false;
@@ -78,7 +78,7 @@ export class RejectCharityComponent implements OnInit {
   }
 
   onPageChange(e) {
-    console.log("onPageChange", e);
+    // console.log("onPageChange", e);
     this.setPage(e);
   }
 
