@@ -1,17 +1,27 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/services/data.service";
 import { Router } from "@angular/router";
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDollar } from '@fortawesome/free-solid-svg-icons';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert';
 
 
 @Component({
   selector: "app-desable-charity",
   templateUrl: "./desable-charity.component.html",
-  styleUrls: ["./desable-charity.component.css"]
+  styleUrls: ["./desable-charity.component.css"],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class DesableCharityComponent implements OnInit {
-  public charityResult: any[];
 
+  faRedo = faRedo;
+  faSearch = faSearch;
+  faCommentDollar = faCommentDollar;
+
+  
+  public charityResult: any[];
   private page: number = 1;
   public searchResults: any[];
   public DonarName;
@@ -27,6 +37,7 @@ export class DesableCharityComponent implements OnInit {
   public approve;
   public suggest;
   spinner: boolean;
+  
 
   public pagination = {
     currentPage: 1,
@@ -36,7 +47,10 @@ export class DesableCharityComponent implements OnInit {
     totalCount: 0
   };
 
-  constructor(public service: DataService, public router: Router) {}
+  constructor(public service: DataService, public router: Router,config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
   setPage(i) {
     this.page = i;
     this.getCharitydetails();
@@ -49,7 +63,7 @@ export class DesableCharityComponent implements OnInit {
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-
+      console.log(Response);
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
       this.charityResult1 = Response.result.paginatedItems[0]._id;
@@ -136,7 +150,7 @@ export class DesableCharityComponent implements OnInit {
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
         this.getCharitydetails();
-          console.log(Res);
+          // console.log(Res);
           
     }
     },(err)=>{
@@ -183,4 +197,8 @@ export class DesableCharityComponent implements OnInit {
     });
   }
 
+  open(content) {
+    console.log('id',this.charityId);
+    this.modalService.open(content);
+  }
 }

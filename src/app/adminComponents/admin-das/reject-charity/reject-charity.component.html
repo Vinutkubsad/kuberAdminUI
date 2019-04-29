@@ -14,7 +14,7 @@
               <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="fas fa-search"></i>
+                      <fa-icon [icon]="faSearch"></fa-icon>
                   </div>
                 </div>
                 <input
@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="col">
-              <button class="refresh" (click)="refresh()"><i class="fas fa-sync-alt"></i></button>
+                <button type="button" class="refresh" (click)="refresh()"><fa-icon [icon]="faRedo"></fa-icon></button>
             </div>
             <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
           </div>

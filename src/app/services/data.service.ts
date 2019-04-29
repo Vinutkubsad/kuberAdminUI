@@ -101,6 +101,14 @@ export class DataService {
     let url = AppSettings.BASE_URL + AppSettings.SEARCH_CHARIY;
     return this.http.post(url + '?page=' + page, data,httpOption);
   }
+
+  transerAmount(data,id) {
+    const httpOption = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwt') })
+    }
+    let url = AppSettings.BASE_URL + AppSettings.TRANSFER_AMOUNT + id;
+    return this.http.post(url,data,httpOption)
+  }
 }
 
 

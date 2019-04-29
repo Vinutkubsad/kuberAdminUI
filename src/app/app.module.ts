@@ -10,6 +10,7 @@ import { NgbModule,NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { ProfileComponent } from './adminComponents/admin-das/profile/profile.co
     RejectCharityComponent,
     EditCharityComponent,
     ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { ProfileComponent } from './adminComponents/admin-das/profile/profile.co
     NgbModule,
     MatProgressSpinnerModule,
     NgbPaginationModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FontAwesomeModule
   ],
   providers: [DataService,AuthGaurd,AuthGaurd1],
   bootstrap: [AppComponent]
