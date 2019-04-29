@@ -38,7 +38,6 @@ export class EditCharityComponent implements OnInit {
     this.id = id;
     var data = { "Course_ID": id };
     this.service.getCharityByID(id).subscribe((res) => {
-      console.log(res,'charityProfile');
       this.charityName = res['result'].charityName;
       this.email = res['result'].email;
       this.password = res['result'].password;

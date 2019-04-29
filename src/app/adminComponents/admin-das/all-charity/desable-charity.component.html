@@ -1,124 +1,130 @@
 <div class="container-fluid padding" #conatent>
-  <div class="container">
-    <div class="row welcome ">
-      <div class="col-12">
-        <h4 class="title">Approve Charity</h4>
-      </div>
-      <div class="container padding">
-        <div class="col">
-          <div class="form-group form-inline">
-            <div class="col-4">
-              <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-              <div class="input-group mb-2 mr-sm-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-search"></i>
+    <div class="container">
+      <div class="row welcome ">
+        <div class="col-12">
+          <h4 class="title">Approve Charity</h4>
+        </div>
+        <div class="container padding">
+          <div class="col">
+            <div class="form-group form-inline">
+              <div class="col-4">
+                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                <div class="input-group mb-2 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <fa-icon [icon]="faSearch"></fa-icon>
+                    </div>
                   </div>
+                  <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                    placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none" />
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                  placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none" />
+              </div>
+              <div class="col">
+                <button type="button" class="refresh" (click)="refresh()"><fa-icon [icon]="faRedo"></fa-icon></button>
               </div>
             </div>
             <div class="col">
-              <button class="refresh" (click)="refresh()"><i class="fas fa-sync-alt"></i></button>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row">
-              <div class="col-12">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class="thead">
-                      <tr>
-                        <th>Charity Name</th>
-                        <th>Email</th>
-                        <th>Contact</th>
-                        <th>Address</th>
-                        <th>Suggest</th>
-                        <th>Edit</th>
-                        <th>Disable/Enable</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let data of charityResult; let i = index">
-                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}</td>
-                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
-                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}</td>
-                        <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
-                          {{ data.state }},{{ data.city }},{{ data.zipcode }}
-                        </td>
-                        <td *ngIf="data.approved === 'approved' && data.suggested === false">
-                            <label class="container check" class="checkbox">
-                              <input
-                                type="checkbox"
-                                class="regular-checkbox"
-                                (input)="suggestCharityTrue(data._id)"
-                              /><span class="checkmark"></span>
-                            </label>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="thead">
+                        <tr>
+                          <th>Charity Name</th>
+                          <th>Email</th>
+                          <th>Contact</th>
+                          <th>Address</th>
+                          <th>Suggest</th>
+                          <th>Edit</th>
+                          <th>Disable/Enable</th>
+                          <th>Transfer Funds</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of charityResult; let i = index">
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.charityName }}</td>
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.email }}</td>
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">{{ data.phoneNumber }}</td>
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
+                            {{ data.state }},{{ data.city }},{{ data.zipcode }}
                           </td>
-                          <td *ngIf="data.approved && data.suggested === true">
-                            <label class="checkbox">
+                          <td *ngIf="data.approved === 'approved' && data.suggested === false">
+                              <label class="container check" class="checkbox">
+                                <input
+                                  type="checkbox"
+                                  class="regular-checkbox"
+                                  (input)="suggestCharityTrue(data._id)"
+                                /><span class="checkmark"></span>
+                              </label>
+                            </td>
+                            <td *ngIf="data.approved && data.suggested === true">
+                              <label class="checkbox">
+                                <input
+                                  type="checkbox"
+                                  checked
+                                  class="regular-checkbox"
+                                  (input)="suggestCharityFalse(data._id)"
+                                />
+                              </label>
+                            </td>
+                            <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
+                              <button class="btn" (click)="editProfile(i)">
+                                <i class="fas fa-edit"></i> Edit Details
+                              </button>
+                            </td>
+                         
+                          <td *ngIf="data.approved === 'approved'">
+                            <label class="switch">
                               <input
-                                type="checkbox"
-                                checked
-                                class="regular-checkbox"
-                                (input)="suggestCharityFalse(data._id)"
+                                type="checkbox"  checked
+                                (input)="disable(data._id)"
                               />
+                              <span class="slider round"></span>
                             </label>
                           </td>
-                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable'">
-                            <button class="btn" (click)="editProfile(i)">
-                              <i class="fas fa-edit"></i> Edit Details
-                            </button>
+                          <td *ngIf="data.approved === 'disable'">
+                            <label class="switch">
+                              <input
+                                type="checkbox"
+                                (input)="enable(data._id)"
+                              />
+                              <span class="slider round"></span>
+                            </label>
                           </td>
-                       
-                        <td *ngIf="data.approved === 'approved'">
-                          <label class="switch">
-                            <input
-                              type="checkbox"  checked
-                              (input)="disable(data._id)"
-                            />
-                            <span class="slider round"></span>
-                          </label>
-                        </td>
-                        <td *ngIf="data.approved === 'disable'">
-                          <label class="switch">
-                            <input
-                              type="checkbox"
-                              (input)="enable(data._id)"
-                            />
-                            <span class="slider round"></span>
-                          </label>
-                        </td>
-                       
-                        
-                      </tr>
-                    </tbody>
-                  </table>
-                  <hr />
-                  <div class="paginate">
-                      <ngb-pagination
-                        class="d-flex justify-content-end"
-                        [(page)]="pagination.currentPage"
-                        [pageSize]="pagination.noOfItemsPerPage"
-                        [collectionSize]="pagination.totalCount"
-                        aria-label="Default pagination"
-                        (pageChange)="onPageChange($event)"
-                      >
-                      </ngb-pagination>
+                          <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                                Launch demo modal  (click)="transferFunds(data._id)">Transfer</button>
+
+                          </td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr />
+                    <div class="paginate">
+                        <ngb-pagination
+                          class="d-flex justify-content-end"
+                          [(page)]="pagination.currentPage"
+                          [pageSize]="pagination.noOfItemsPerPage"
+                          [collectionSize]="pagination.totalCount"
+                          aria-label="Default pagination"
+                          (pageChange)="onPageChange($event)"
+                        >
+                        </ngb-pagination>
+                      </div>
+                    <div class="spinner">
+                      <mat-spinner *ngIf="spinner"></mat-spinner>
                     </div>
-                  <div class="spinner">
-                    <mat-spinner *ngIf="spinner"></mat-spinner>
+                   
                   </div>
-                 
                 </div>
+                
               </div>
-              
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  

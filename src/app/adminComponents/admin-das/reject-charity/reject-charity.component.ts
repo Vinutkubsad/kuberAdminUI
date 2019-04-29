@@ -1,5 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reject-charity',
@@ -7,6 +10,9 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./reject-charity.component.css']
 })
 export class RejectCharityComponent implements OnInit {
+
+  faRedo = faRedo;
+  faSearch = faSearch;
 
   public charityResult: any[];
   private page: number = 1;

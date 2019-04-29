@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/services/data.service";
 import { Router } from "@angular/router";
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDollar } from '@fortawesome/free-solid-svg-icons';
 import swal from 'sweetalert';
 
 
@@ -10,8 +13,13 @@ import swal from 'sweetalert';
   styleUrls: ["./desable-charity.component.css"]
 })
 export class DesableCharityComponent implements OnInit {
-  public charityResult: any[];
 
+  faRedo = faRedo;
+  faSearch = faSearch;
+  faCommentDollar = faCommentDollar;
+
+  
+  public charityResult: any[];
   private page: number = 1;
   public searchResults: any[];
   public DonarName;
@@ -27,6 +35,7 @@ export class DesableCharityComponent implements OnInit {
   public approve;
   public suggest;
   spinner: boolean;
+  
 
   public pagination = {
     currentPage: 1,
@@ -49,7 +58,7 @@ export class DesableCharityComponent implements OnInit {
   getCharitydetails() {
     this.spinner = true;
     this.service.getCharitydetails(this.page).subscribe((Response: any) => {
-      console.log(Response);
+console.log(Response);
 
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
