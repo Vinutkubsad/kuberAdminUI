@@ -26,7 +26,7 @@ export class EditCharityComponent implements OnInit {
   theCheckbox = false;
 
 
-  constructor( public service: DataService, public router: ActivatedRoute ) { }
+  constructor( public service: DataService, public router: ActivatedRoute, public route: Router ) { }
 
   ngOnInit() {
     this.router.params.subscribe((params: Params)=>{
@@ -79,6 +79,10 @@ export class EditCharityComponent implements OnInit {
         swal( 'Error', 'warning')
       }
     });
+  }
+
+  reroute() {
+    this.route.navigate(['dashboard/approved-charities']);
   }
 
 }

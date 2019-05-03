@@ -13,7 +13,7 @@ export const routes: Routes = [
 
   { path: 'adminlogin', component: AdminLoginComponent },
   {
-    path: 'dashboard', component: AdminDasComponent,
+    path: 'dashboard', component: AdminDasComponent, canActivate: [AuthGaurd],
     children: [
     { path: 'pending-charities', component: ApproveCharityComponent },
     { path: 'approved-charities', component: DesableCharityComponent },
