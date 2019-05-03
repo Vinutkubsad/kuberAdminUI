@@ -234,7 +234,7 @@ export class DesableCharityComponent implements OnInit {
     var data = { "account_id" : this.id , "amount":this.amount, "source_type" :this.payment }
     console.log(data);
     this.service.transfer(data).subscribe((Response: any)=>{
-      console.log(Response);
+      // console.log(Response);
       if(Response){
         swal("", `Successfully transferred ${Response.result.amount/100} USD ` ,"success");
         this.amount = null;
