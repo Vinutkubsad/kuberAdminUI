@@ -27,12 +27,12 @@
                                     </td>
                                     <td *ngIf="!data.approved">
                                         <button type="button" class="btn btn-outline-success"
-                                            (click)="ApproveCharity(data._id)"> <i class="fas fa-thumbs-up"></i>
+                                            (click)="ApproveCharity(data._id)">
                                             Approve</button>
                                     </td>
                                     <td *ngIf="!data.approved">
                                         <button type="button" class="btn btn-outline-danger"
-                                            (click)="rejectCharity(data._id)"> <i class="fas fa-thumbs-down"></i>
+                                            (click)="rejectCharity(data._id)">
                                             Reject</button>
                                     </td>
                                 </tr>
