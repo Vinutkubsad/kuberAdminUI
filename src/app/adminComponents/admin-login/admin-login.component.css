@@ -157,3 +157,8 @@ footer {
   margin: 50px;
   text-align: center;
 }
+
+.spinner {
+  width: 100%;
+  text-align: center;
+}

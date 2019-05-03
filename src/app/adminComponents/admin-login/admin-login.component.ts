@@ -1,11 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-  NgForm
-} from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from "@angular/forms";
 import { DataService } from "src/app/services/data.service";
 import { Router } from "@angular/router";
 import swal from "sweetalert";
@@ -15,13 +9,14 @@ import swal from "sweetalert";
   templateUrl: "./admin-login.component.html",
   styleUrls: ["./admin-login.component.css"]
 })
+
 export class AdminLoginComponent implements OnInit {
+
+
   loginForm: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    public adminservices: DataService,
-    private router: Router
-  ) {}
+  loading: boolean;
+
+  constructor(private fb: FormBuilder, public adminservices: DataService, private router: Router) { }
 
   ngOnInit() {
     this.resetForm();
@@ -49,9 +44,11 @@ export class AdminLoginComponent implements OnInit {
       email: this.adminservices.adminLogin.email,
       password: this.adminservices.adminLogin.password
     };
+    this.loading = true;
     this.adminservices.AdminLogin(data).subscribe(
       (res: any) => {
         if (res) {
+          
           localStorage.setItem("jwt", "true");
           this.resetForm();
           this.router.navigate(["dashboard/pending-charities"]);

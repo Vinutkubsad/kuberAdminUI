@@ -32,6 +32,11 @@
           </div>
           <label for="password">password</label>
         </div>
+        <div class="spinner" *ngIf="loading">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <button class="btn"> Login </button>
       </form>
     </div>
