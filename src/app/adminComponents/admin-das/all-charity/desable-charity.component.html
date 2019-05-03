@@ -53,13 +53,13 @@
                         <td *ngIf="data.approved === 'approved' || data.approved === 'disable' ">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
-                        <td *ngIf="data.approved === 'approved' && data.suggested === false">
+                        <td *ngIf="(data.approved === 'approved' || data.approved === 'disable') && data.suggested === false">
                           <label class="container check" class="checkbox">
                             <input type="checkbox" class="regular-checkbox"
                               (input)="suggestCharityTrue(data._id)" /><span class="checkmark"></span>
                           </label>
                         </td>
-                        <td *ngIf="data.approved && data.suggested === true">
+                        <td *ngIf="(data.approved === 'approved' || data.approved === 'disable') && data.suggested === true">
                           <label class="checkbox">
                             <input type="checkbox" checked class="regular-checkbox"
                               (input)="suggestCharityFalse(data._id)" />

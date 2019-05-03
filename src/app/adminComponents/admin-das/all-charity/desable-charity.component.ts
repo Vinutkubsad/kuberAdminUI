@@ -31,6 +31,7 @@ export class DesableCharityComponent implements OnInit {
   public items: any;
   public pageSize: number;
   public flag: any = false;
+  public flag1: any = false;
   public charityName;
   public charityResult1;
   public checked;
@@ -143,43 +144,45 @@ export class DesableCharityComponent implements OnInit {
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-        this.getCharitydetails();
+        // this.getCharitydetails();
+        window.location.reload();
         // console.log(Res);
       }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
   enable(id) {
     this.charityId = id;
-    this.flag = !this.flag;
-    if (this.flag === false) {
+    this.flag1 = !this.flag1;
+    if (this.flag1 === false) {
       this.approve = "disable";
-      swal("successfully enabled ","","success");
-    } else if (this.flag === true) {
+      swal("successfully disabled ","","success");
+    } else if (this.flag1 === true) {
       this.approve = "enable";
       swal("successfully enabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
       if(Res.success){
-        this.getCharitydetails();
+        // this.getCharitydetails();
+        window.location.reload();
           // console.log(Res);
           
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
   suggestCharityTrue(id) {
     this.charityId = id;
-    this.flag = !this.flag;
-    if (this.flag === true) {
+    this.flag1 = !this.flag1;
+    if (this.flag1 === true) {
       this.suggest = true;
       swal("Suggestion added ","","success");
-    } else if (this.flag === false) {
+    } else if (this.flag1 === false) {
       this.suggest = false;
       swal("Suggestion removed ","","success");
     }
@@ -189,26 +192,29 @@ export class DesableCharityComponent implements OnInit {
           window.location.reload();
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
+
   suggestCharityFalse(id) {
     this.charityId = id;
-    this.flag = !this.flag;
-    if (this.flag === true) {
+    this.flag1 = !this.flag1;
+    if (this.flag1 === true) {
       this.suggest = false;
       swal("Suggestion removed ","","success");
-    } else if (this.flag === false) {
+    } else if (this.flag1 === false) {
       this.suggest = true;
       swal("Suggestion added ","","success");
     }
     var data = { charityId: this.charityId, suggested: this.suggest };
     this.service.suggestCharity(data).subscribe((Response: any) => {
      if(Response.success){
+      //  console.log(Response);
+       
           window.location.reload();
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
@@ -229,16 +235,18 @@ export class DesableCharityComponent implements OnInit {
 
   Submit(){
     var data = { "account_id" : this.id , "amount":this.amount, "source_type" :this.payment }
-    // console.log(data);
+    console.log(data);
     this.service.transfer(data).subscribe((Response: any)=>{
       // console.log(Response);
       if(Response){
-        swal("",`Successfully transferred ${Response.result.amount/100} USD `,"success");
+        swal("", `Successfully transferred ${Response.result.amount/100} USD ` ,"success");
         this.amount = null;
         this.payment = null;
       } 
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      // console.log(err);
+      
+      swal("Error",err.error.message, "error");
       this.amount = null;
       this.payment = null;
     })
