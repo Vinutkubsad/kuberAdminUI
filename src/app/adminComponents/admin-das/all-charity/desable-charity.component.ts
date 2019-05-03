@@ -6,6 +6,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert';
+import { concatMap, timeout, catchError, delay } from 'rxjs/operators';
+
 
 
 @Component({
@@ -78,7 +80,7 @@ export class DesableCharityComponent implements OnInit {
 
   getCharitydetails() {
     this.spinner = true;
-    this.service.getCharitydetails(this.page).subscribe((Response: any) => {
+    this.service.getCharitydetails(this.page).pipe(timeout(6000),catchError(e=>{this.logout1(); return null})).subscribe((Response: any) => {
       // console.log(Response);
       this.spinner = false;
       this.charityResult = Response.result.paginatedItems;
@@ -92,6 +94,14 @@ export class DesableCharityComponent implements OnInit {
         Response.result.per_page
       );
     });
+  }
+
+
+  logout1(){
+    this.router.navigate(["adminlogin"]);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("randid");
+    localStorage.removeItem("user");
   }
 
   doPagination(itemsPerPage, total_pages, totalCount, pageNo, per_page) {

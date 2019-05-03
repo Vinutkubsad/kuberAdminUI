@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import swal from 'sweetalert';
+import { concatMap, timeout, catchError, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-charity',
@@ -37,7 +38,7 @@ export class EditCharityComponent implements OnInit {
   getCharityProfile(id){
     this.id = id;
     var data = { "Course_ID": id };
-    this.service.getCharityByID(id).subscribe((res) => {
+    this.service.getCharityByID(id).pipe(timeout(6000),catchError(e=>{this.logout1(); return null})).subscribe((res) => {
       this.charityName = res['result'].charityName;
       this.email = res['result'].email;
       this.password = res['result'].password;
@@ -83,6 +84,14 @@ export class EditCharityComponent implements OnInit {
 
   reroute() {
     this.route.navigate(['dashboard/approved-charities']);
+  }
+
+
+  logout1(){
+    this.route.navigate(["adminlogin"]);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("randid");
+    localStorage.removeItem("user");
   }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, Optional} from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
-
-
+import { Router} from '@angular/router';
+import { concatMap, timeout, catchError, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-approve-charity',
@@ -19,7 +19,7 @@ export class ApproveCharityComponent implements OnInit {
 
   dataSource = new MatTableDataSource
 
-  constructor(  public service: DataService ) { }
+  constructor(  public service: DataService, public router: Router, ) { }
 
   ngOnInit() {
     this.getCharitydetails();
@@ -29,7 +29,7 @@ export class ApproveCharityComponent implements OnInit {
 
   getCharitydetails() {
     this.spinner = true;
-    this.service.getCharitydetails(this.page).subscribe((res:any) => {
+    this.service.getCharitydetails(this.page).pipe(timeout(6000),catchError(e=>{this.logout1(); return null})).subscribe((res:any) => {
       this.spinner = false;
        this.charityResult = res.result.paginatedItems;
     })
@@ -66,4 +66,10 @@ export class ApproveCharityComponent implements OnInit {
     window.location.reload();
   }
 
+  logout1(){
+    this.router.navigate(["home"]);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("randid");
+    localStorage.removeItem("user");
+  }
 }
