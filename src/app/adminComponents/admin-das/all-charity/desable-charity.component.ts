@@ -30,6 +30,7 @@ export class DesableCharityComponent implements OnInit {
   public items: any;
   public pageSize: number;
   public flag: any = false;
+  public flag1: any = false;
   public charityName;
   public charityResult1;
   public checked;
@@ -154,11 +155,11 @@ export class DesableCharityComponent implements OnInit {
     this.charityId = id;
     this.flag = !this.flag;
     if (this.flag === false) {
-      this.approve = "disable";
-      swal("successfully enabled ","","success");
-    } else if (this.flag === true) {
       this.approve = "enable";
       swal("successfully enabled ","","success");
+    } else if (this.flag === true) {
+      this.approve = "disable";
+      swal("successfully disabled ","","success");
     }
     var data = { approved: this.approve, id: this.charityId };
     this.service.disable_enable_reject(data).subscribe((Res:any) => {
@@ -174,11 +175,11 @@ export class DesableCharityComponent implements OnInit {
 
   suggestCharityTrue(id) {
     this.charityId = id;
-    this.flag = !this.flag;
-    if (this.flag === true) {
+    this.flag1 = !this.flag1;
+    if (this.flag1 === true) {
       this.suggest = true;
       swal("Suggestion added ","","success");
-    } else if (this.flag === false) {
+    } else if (this.flag1 === false) {
       this.suggest = false;
       swal("Suggestion removed ","","success");
     }
@@ -191,13 +192,14 @@ export class DesableCharityComponent implements OnInit {
       swal("Error","something went wrong", "error");
     });
   }
+
   suggestCharityFalse(id) {
     this.charityId = id;
-    this.flag = !this.flag;
-    if (this.flag === true) {
+    this.flag1 = !this.flag1;
+    if (this.flag1 === true) {
       this.suggest = false;
       swal("Suggestion removed ","","success");
-    } else if (this.flag === false) {
+    } else if (this.flag1 === false) {
       this.suggest = true;
       swal("Suggestion added ","","success");
     }
@@ -232,12 +234,12 @@ export class DesableCharityComponent implements OnInit {
     this.service.transfer(data).subscribe((Response: any)=>{
       // console.log(Response);
       if(Response){
-        swal("",`Successfully transferred ${Response.result.amount/100} USD `,"success");
+        swal("", `Successfully transferred ${Response.result.amount/100} USD ` ,"success");
         this.amount = null;
         this.payment = null;
       } 
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error","Something went wrong", "error");
       this.amount = null;
       this.payment = null;
     })
