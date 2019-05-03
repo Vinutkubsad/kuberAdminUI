@@ -147,7 +147,7 @@ export class DesableCharityComponent implements OnInit {
         // console.log(Res);
       }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
@@ -169,7 +169,7 @@ export class DesableCharityComponent implements OnInit {
           
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
@@ -189,7 +189,7 @@ export class DesableCharityComponent implements OnInit {
           window.location.reload();
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
@@ -206,10 +206,12 @@ export class DesableCharityComponent implements OnInit {
     var data = { charityId: this.charityId, suggested: this.suggest };
     this.service.suggestCharity(data).subscribe((Response: any) => {
      if(Response.success){
+      //  console.log(Response);
+       
           window.location.reload();
     }
     },(err)=>{
-      swal("Error","something went wrong", "error");
+      swal("Error",err.error.message, "error");
     });
   }
 
@@ -230,16 +232,18 @@ export class DesableCharityComponent implements OnInit {
 
   Submit(){
     var data = { "account_id" : this.id , "amount":this.amount, "source_type" :this.payment }
-    // console.log(data);
+    console.log(data);
     this.service.transfer(data).subscribe((Response: any)=>{
-      // console.log(Response);
+      console.log(Response);
       if(Response){
         swal("", `Successfully transferred ${Response.result.amount/100} USD ` ,"success");
         this.amount = null;
         this.payment = null;
       } 
     },(err)=>{
-      swal("Error","Something went wrong", "error");
+      // console.log(err);
+      
+      swal("Error",err.error.message, "error");
       this.amount = null;
       this.payment = null;
     })
