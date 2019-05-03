@@ -213,7 +213,7 @@ export class DesableCharityComponent implements OnInit {
 
   StripeBalance(){
     this.service.StripeBalance().subscribe((Response:any)=>{
-      console.log(Response);
+      // console.log(Response);
       this.bank = Response.result.available[0].source_types.bank_account/100;
       this.card = Response.result.available[0].source_types.card/100;
     })
@@ -232,9 +232,14 @@ export class DesableCharityComponent implements OnInit {
     this.service.transfer(data).subscribe((Response: any)=>{
       // console.log(Response);
       if(Response){
-
-        swal("",`Successfully transferred ${Response.result.amount/100} USD to ${name} `,"success");
+        swal("",`Successfully transferred ${Response.result.amount/100} USD `,"success");
+        this.amount = null;
+        this.payment = null;
       } 
+    },(err)=>{
+      swal("Error","something went wrong", "error");
+      this.amount = null;
+      this.payment = null;
     })
   }
 }
