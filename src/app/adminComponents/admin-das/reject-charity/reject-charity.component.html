@@ -8,28 +8,21 @@
         <div class="col">
           <div class="form-group form-inline">
             <div class="col-6">
-              <label class="sr-only" for="inlineFormInputGroupUsername2"
-                >Username</label
-              >
+              <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
               <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                      <fa-icon [icon]="faSearch"></fa-icon>
+                    <fa-icon [icon]="faSearch"></fa-icon>
                   </div>
                 </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inlineFormInputGroupUsername2"
-                  placeholder="Search Charity name"
-                  [(ngModel)]="charityName"
-                  (input)="search()"
-                  style="outline:none"
-                />
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                  placeholder="Search Charity name" [(ngModel)]="charityName" (input)="search()" style="outline:none" />
               </div>
             </div>
             <div class="col">
-                <button type="button" class="refresh" (click)="refresh()"><fa-icon [icon]="faRedo"></fa-icon></button>
+              <button type="button" class="refresh" (click)="refresh()">
+                <fa-icon [icon]="faRedo"></fa-icon>
+              </button>
             </div>
             <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
           </div>
@@ -54,7 +47,7 @@
                         <td *ngIf="data.approved==='reject'">
                           {{ data.state }},{{ data.city }},{{ data.zipcode }}
                         </td>
-                       
+
                       </tr>
                     </tbody>
                   </table>
@@ -62,16 +55,17 @@
                     <mat-spinner ></mat-spinner>
                   </div> -->
                   <hr />
-                  <div *ngFor="let data of charityResult;">
-                  <div class="paginate">
-                    <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
-                    [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
-                    aria-label="Default pagination" (pageChange)="onPageChange($event)" *ngIf="charityResult.length> 0 && data.approved==='reject'">
-                  </ngb-pagination>
+                  <!-- <div *ngFor="let data of charityResult;">
+                    <div class="paginate">
+                      <ngb-pagination class="d-flex justify-content-end" [(page)]="pagination.currentPage"
+                        [pageSize]="pagination.noOfItemsPerPage" [collectionSize]="pagination.totalCount"
+                        aria-label="Default pagination" (pageChange)="onPageChange($event)"
+                        *ngIf="charityResult.length> 0 && data.approved==='reject'">
+                      </ngb-pagination>
                     </div>
-                    </div>
+                  </div> -->
                 </div>
-              </div>        
+              </div>
             </div>
           </div>
         </div>
@@ -79,3 +73,6 @@
     </div>
   </div>
 </div>
+<div class="footer">
+    <app-footer></app-footer>
+ </div>
